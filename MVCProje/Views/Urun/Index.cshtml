@@ -1,0 +1,42 @@
+﻿@model List<MVCProje.Models.Entity.TblUrunler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    int count = 0;
+
+
+}
+
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Ürün  Id</th>
+        <th>Ürün Adı</th>
+        <th>Ürün Markası</th>
+        <th>Ürün Kategorisi</th>
+        <th>Ürün Fiyat</th>
+        <th>Ürün Stok</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+
+    </tr>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.UrunAd</td>
+                <td>@item.Marka</td>
+                <td>@item.TblKategorıler.KategorıAd</td>
+                @*<td>@(item.TblKategorıler != null ? item.TblKategorıler.KategorıAd : "Kategori Yok")</td>*@
+                <td>@item.Fıyat</td>
+                <td>@item.Stok</td>
+                <td><a href="/Urun/DeletUrun/@item.UrunId" class="btn btn-danger">Sil</a> </td>
+                <td><a href="/Urun/UpdateUrun/@item.UrunId" class="btn btn-info">Güncelle</a> </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Urun/UrunEkle" class="btn btn-primary">Yeni Ürün Ekle</a>

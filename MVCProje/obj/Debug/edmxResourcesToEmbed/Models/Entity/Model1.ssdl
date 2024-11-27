@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TblKategorıler">
+    <Key>
+      <PropertyRef Name="KategorıId" />
+    </Key>
+    <Property Name="KategorıId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategorıAd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TblMusterıler">
+    <Key>
+      <PropertyRef Name="MusterıId" />
+    </Key>
+    <Property Name="MusterıId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MusterıAd" Type="nvarchar" MaxLength="150" />
+    <Property Name="MusterıSoyad" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="TblSatıs">
+    <Key>
+      <PropertyRef Name="SatısId" />
+    </Key>
+    <Property Name="SatısId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Urun" Type="int" />
+    <Property Name="Musterı" Type="int" />
+    <Property Name="Adet" Type="tinyint" />
+    <Property Name="Fıyat" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="TblUrunler">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunAd" Type="nvarchar" MaxLength="100" />
+    <Property Name="Marka" Type="nvarchar" MaxLength="50" />
+    <Property Name="UrunKategorı" Type="int" Nullable="false" />
+    <Property Name="Fıyat" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Stok" Type="tinyint" />
+  </EntityType>
+  <Association Name="FK_TblSatıs_TblMusterıler">
+    <End Role="TblMusterıler" Type="Self.TblMusterıler" Multiplicity="0..1" />
+    <End Role="TblSatıs" Type="Self.TblSatıs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblMusterıler">
+        <PropertyRef Name="MusterıId" />
+      </Principal>
+      <Dependent Role="TblSatıs">
+        <PropertyRef Name="Musterı" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblSatıs_TblUrunler">
+    <End Role="TblUrunler" Type="Self.TblUrunler" Multiplicity="0..1" />
+    <End Role="TblSatıs" Type="Self.TblSatıs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUrunler">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="TblSatıs">
+        <PropertyRef Name="Urun" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUrunler_TblKategorıler">
+    <End Role="TblKategorıler" Type="Self.TblKategorıler" Multiplicity="1" />
+    <End Role="TblUrunler" Type="Self.TblUrunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKategorıler">
+        <PropertyRef Name="KategorıId" />
+      </Principal>
+      <Dependent Role="TblUrunler">
+        <PropertyRef Name="UrunKategorı" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbStokModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblKategorıler" EntityType="Self.TblKategorıler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblMusterıler" EntityType="Self.TblMusterıler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSatıs" EntityType="Self.TblSatıs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblUrunler" EntityType="Self.TblUrunler" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TblSatıs_TblMusterıler" Association="Self.FK_TblSatıs_TblMusterıler">
+      <End Role="TblMusterıler" EntitySet="TblMusterıler" />
+      <End Role="TblSatıs" EntitySet="TblSatıs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblSatıs_TblUrunler" Association="Self.FK_TblSatıs_TblUrunler">
+      <End Role="TblUrunler" EntitySet="TblUrunler" />
+      <End Role="TblSatıs" EntitySet="TblSatıs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUrunler_TblKategorıler" Association="Self.FK_TblUrunler_TblKategorıler">
+      <End Role="TblKategorıler" EntitySet="TblKategorıler" />
+      <End Role="TblUrunler" EntitySet="TblUrunler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

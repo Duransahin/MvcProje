@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 4 Navbar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <!-- Arka planı siyah yapmak için bg-dark eklendi -->
+        <div class="container">
+            <!-- Navbar'ı ortalamak için container kullanıyoruz -->
+            <a class="navbar-brand text-light" href="#">Stok</a> <!-- Metin rengi beyaz yapıldı -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <!-- Menü öğelerini sağa hizalamak için ml-auto kullandık -->
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" href="/Kategori/Index/">Kategoriler <span class="sr-only">(current)</span></a> <!-- Metin rengi beyaz yapıldı -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/Urun/Index/">Ürünler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/Musterı/Index">Müşteriler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/Satıs/Index">Satışlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light disabled" href="/Default/Index">Yardım Menüsü</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

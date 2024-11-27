@@ -1,0 +1,35 @@
+﻿@model MVCProje.Models.Entity.TblUrunler
+@{
+    ViewBag.Title = "UpdateUrun";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Yeni Proje Ekleme Tablosu</h2>
+
+<form method="post">
+    @Html.HiddenFor(m => m.UrunId)
+
+    <label>Ürün Adı</label>
+    @Html.TextBoxFor(x => x.UrunAd, new { @class = "form-control"} )
+    <p class="text-danger"> @Html.ValidationMessageFor(x => x.UrunAd)</p>
+    <br />
+    <label>Ürün Markası</label>
+    @Html.TextBoxFor(x => x.Marka, new { @class = "form-control" })
+    <p class="text-danger"> @Html.ValidationMessageFor(x => x.Marka)</p>
+    <br />
+    <label>Kategori Adı</label>
+    @Html.DropDownListFor(x => x.UrunKategorı, (List<SelectListItem>)ViewBag.dgr, "Kategori Seçiniz", new { @class = "form-control" })
+    <p class="text-danger"> @Html.ValidationMessageFor(x => x.UrunKategorı)</p>
+    <br />
+    <label>Ürün Fiyatı</label>
+    @Html.TextBoxFor(x => x.Fıyat, new { @class = "form-control" })
+    <p class="text-danger"> @Html.ValidationMessageFor(x => x.Fıyat)</p>
+    <br />
+    <label>Ürün Stok Adedi</label>
+    @Html.TextBoxFor(x => x.Stok, new { @class = "form-control" })
+    <p class="text-danger"> @Html.ValidationMessageFor(x => x.Stok)</p>
+    <br />
+    <button class="btn btn-outline-success">Kaydet</button>
+    <br />
+    <br />
+</form>

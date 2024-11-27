@@ -1,0 +1,42 @@
+﻿@model List<MVCProje.Models.Entity.TblMusterıler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    int count = 0;
+}
+<br />
+@using (Html.BeginForm("Index", "Musterı", FormMethod.Get))
+{
+    <p>
+      <b>  Arananacak Müşteri Adı:</b> @Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </p>
+}
+
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Müşteri Id</th>
+        <th>Müşteri Adı</th>
+        <th>Müşteri Sil</th>
+        <th>Müşteri Güncelle</th>
+
+    </tr>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.MusterıAd</td>
+                <td>@item.MusterıSoyad</td>
+                <td><a href="/Musterı/DeleteMusterı/@item.MusterıId" class="btn btn-danger"> Sil</a></td>
+                <td><a href="/Musterı/MusterıUpdate/@item.MusterıId" class="btn btn-success">Güncelle</a></td>
+                <td>@Html.ActionLink("Sil Butonu", "DeleteMusterı", new { id = item.MusterıId }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyormusunuz')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<a href="/Musterı/MusterıEkle" class="btn btn-primary">Yeni Müşteri Ekle</a>

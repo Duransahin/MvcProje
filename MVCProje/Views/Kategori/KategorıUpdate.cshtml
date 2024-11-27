@@ -1,0 +1,19 @@
+﻿@model MVCProje.Models.Entity.TblKategorıler
+@{
+    ViewBag.Title = "KategorıUpdate";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post">
+
+@Html.HiddenFor(x => x.KategorıId)
+@*<label>Kategori Id</label>
+    @Html.TextBoxFor(x => x.KategorıId, new { @class = "form-control" })
+    <br />*@
+<label>Kategori Adı</label>
+@Html.TextBoxFor(x => x.KategorıAd, new { @class = "form-control" })
+<br />
+<button class="btn btn-outline-success">Güncelle</button>
+
+</form>
+

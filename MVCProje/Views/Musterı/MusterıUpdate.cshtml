@@ -1,0 +1,21 @@
+﻿@model MVCProje.Models.Entity.TblMusterıler
+@{
+    ViewBag.Title = "MusterıUpdate";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>müşteri Güncelleme</h2>
+
+<form method="post">
+
+    @Html.HiddenFor(x => x.MusterıId)
+
+    <label>Müşteri Adı</label>
+    @Html.TextBoxFor(x => x.MusterıAd, new { @class = "form-control" })
+    <br />
+    <label>Müşteri Soyadı</label>
+    @Html.TextBoxFor(x => x.MusterıSoyad, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-outline-success">Güncelle</button>
+
+</form>
